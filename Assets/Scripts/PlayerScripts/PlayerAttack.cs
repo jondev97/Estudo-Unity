@@ -31,10 +31,7 @@ public class PlayerAttack : MonoBehaviour
 
         // Configura a direção no script do projétil
         ProjectBehavior projBehavior = projectile.GetComponent<ProjectBehavior>();
-        if (projBehavior != null)
-        {
-            projBehavior.SetDirection(attackDirection);
-        }
+        projBehavior.SetDirection(attackDirection);
 
         Destroy(projectile, 2f); // Destroi o projétil após 2 segundos
     }

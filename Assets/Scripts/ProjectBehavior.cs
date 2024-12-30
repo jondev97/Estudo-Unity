@@ -15,14 +15,16 @@ public class ProjectBehavior : MonoBehaviour
         // Move o projétil na direção configurada
         if (direction != Vector2.zero)
         {
-            transform.Translate(direction * speed * Time.deltaTime);
+            transform.Translate(Time.deltaTime * speed * direction);
         }
     }
      void OnTriggerEnter2D(Collider2D other){
         if(other.CompareTag("Enemy")){
+            IEnemyScore ScorePoints = other.gameObject.GetComponent<IEnemyScore>();
+            ScorePoints?.EnemyScore();
+
             Destroy(other.gameObject);
             Destroy(gameObject);
-        GameObject.Find("GameManager").GetComponent<ScoreManager>().AddScore(10);
         }
 
     }
