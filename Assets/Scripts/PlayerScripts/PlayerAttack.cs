@@ -1,14 +1,18 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
     public GameObject projectPrefab; // Prefab do projétil
     public float attackRate = 4f;    // Taxa de ataque
+    private Player dead;
 
     void Start()
     {
         // Repetir ataques na taxa definida
         InvokeRepeating(nameof(Attack), attackRate, attackRate);
+        dead = GetComponent<Player>();
+
     }
 
     void Attack()
@@ -34,5 +38,19 @@ public class PlayerAttack : MonoBehaviour
         projBehavior.SetDirection(attackDirection);
 
         Destroy(projectile, 2f); // Destroi o projétil após 2 segundos
+
+  
+    if (dead != null && dead.isDead)
+    {
+        StopAttacking();
+        return; // Impede outras ações do jogador, se necessário
+    }
+
+
+    }
+     private void StopAttacking()
+    {
+        // Para o disparo repetido
+        CancelInvoke(nameof(Attack));
     }
 }

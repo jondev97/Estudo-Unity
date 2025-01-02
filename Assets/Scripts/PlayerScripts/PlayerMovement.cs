@@ -6,6 +6,12 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 movement;
 
+
+    public Vector2 _movement{
+        get {return movement;}
+        set { movement = value;}
+    }
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -15,7 +21,6 @@ public class PlayerMovement : MonoBehaviour
     {
         movement.x = Input.GetAxis("Horizontal");
         movement.y = Input.GetAxis("Vertical");
-
     }
 
     void FixedUpdate()

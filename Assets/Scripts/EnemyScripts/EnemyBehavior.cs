@@ -7,23 +7,34 @@ public class EnemyBehavior : MonoBehaviour, IEnemyScore
     public float speed = 2f;
     private Transform player;
     private UIManager uiManager;
+    private Player dead;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         uiManager = FindFirstObjectByType<UIManager>();
+        dead = player.GetComponent<Player>();
     }
 
     void Update()
     {
+
         if(player != null){
             Vector2 direction = (player.position - transform.position).normalized;
 
             transform.Translate(Time.deltaTime * speed * direction  );
         }
+
+
+    if (dead != null && dead.isDead)
+    {
+        speed = 0f;
+        return; // Impede outras ações do jogador, se necessário
+  
+}
+
         
     }
-
     public void EnemyScore()
     {
         uiManager.UpdateScore(EnemyPoints);
