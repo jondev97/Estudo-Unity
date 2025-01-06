@@ -8,6 +8,7 @@ public class EnemyBehavior : MonoBehaviour, IEnemyScore
     private Transform player;
     private UIManager uiManager;
     private Player dead;
+    
 
     void Start()
     {
@@ -23,6 +24,7 @@ public class EnemyBehavior : MonoBehaviour, IEnemyScore
             Vector2 direction = (player.position - transform.position).normalized;
 
             transform.Translate(Time.deltaTime * speed * direction  );
+
         }
 
 
@@ -33,8 +35,16 @@ public class EnemyBehavior : MonoBehaviour, IEnemyScore
   
 }
 
-        
+
+    float posX = player.position.x - transform.position.x;
+
+    if(posX > 0){
+        transform.localScale = new Vector3(1,1,1);
+    }else{
+        transform.localScale = new Vector3(-1,1,1);
     }
+
+}
     public void EnemyScore()
     {
         uiManager.UpdateScore(EnemyPoints);
