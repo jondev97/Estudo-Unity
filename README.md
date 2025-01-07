@@ -24,6 +24,7 @@ Este projeto tem como objetivo o desenvolvimento de um jogo 2D inspirado em *Vam
 ### Mecânica de Inimigos
 - Correção da física dos inimigos
 - Adição de outros tipos de inimigos (com danos diferentes)
+- Adicionar barra de HP de inimigos
 
 ### Mecânica do Jogo
 - Progresso de XP
