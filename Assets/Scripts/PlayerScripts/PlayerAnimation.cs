@@ -5,14 +5,14 @@ public class PlayerAnimation : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     private PlayerMovement player;
-    private Player dead;
+    private PlayerHealth dead;
     private Animator anim;
     
     void Start()
     {
         player = GetComponent<PlayerMovement>();
         anim = GetComponent<Animator>();
-        dead = GetComponent<Player>();
+        dead = GetComponent<PlayerHealth>();
     }
 
     // Update is called once per frame

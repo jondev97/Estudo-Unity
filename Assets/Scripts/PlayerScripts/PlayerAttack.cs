@@ -5,13 +5,14 @@ public class PlayerAttack : MonoBehaviour
 {
     public GameObject projectPrefab; // Prefab do projétil
     public float attackRate = 4f;    // Taxa de ataque
-    private Player dead;
+    //private int attack = 20; //Valor dano
+    private PlayerHealth dead;
 
     void Start()
     {
         // Repetir ataques na taxa definida
         InvokeRepeating(nameof(Attack), attackRate, attackRate);
-        dead = GetComponent<Player>();
+        dead = GetComponent<PlayerHealth>();
 
     }
 
@@ -48,6 +49,7 @@ public class PlayerAttack : MonoBehaviour
 
 
     }
+
      private void StopAttacking()
     {
         // Para o disparo repetido

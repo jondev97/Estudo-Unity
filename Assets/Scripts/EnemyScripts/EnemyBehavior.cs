@@ -7,14 +7,13 @@ public class EnemyBehavior : MonoBehaviour, IEnemyScore
     public float speed = 2f;
     private Transform player;
     private UIManager uiManager;
-    private Player dead;
+    private PlayerHealth dead;
     
-
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         uiManager = FindFirstObjectByType<UIManager>();
-        dead = player.GetComponent<Player>();
+        dead = player.GetComponent<PlayerHealth>();
     }
 
     void Update()
@@ -28,23 +27,27 @@ public class EnemyBehavior : MonoBehaviour, IEnemyScore
         }
 
 
-    if (dead != null && dead.isDead)
-    {
-        speed = 0f;
-        return; // Impede outras ações do jogador, se necessário
-  
-}
 
+        if (dead != null && dead.isDead)
+        {
+            speed = 0f;
+            return; // Impede outras ações do inimigo, se necessário
+    
+        }
 
-    float posX = player.position.x - transform.position.x;
+            //Redução hp inimigo
 
-    if(posX > 0){
-        transform.localScale = new Vector3(1,1,1);
-    }else{
-        transform.localScale = new Vector3(-1,1,1);
+    
+
+        float posX = player.position.x - transform.position.x;
+
+        if(posX > 0){
+            transform.localScale = new Vector3(1,1,1);
+        }else{
+            transform.localScale = new Vector3(-1,1,1);
+        }
+
     }
-
-}
     public void EnemyScore()
     {
         uiManager.UpdateScore(EnemyPoints);
